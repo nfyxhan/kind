@@ -11,7 +11,7 @@ ENV KUBECONFIG=/var/run/host.config
 
 WORKDIR /home/workspace
 
-ADD hack .
-ADD config .
+ADD hack hack
+ADD config config
 
 ENTRYPOINT dockerd
