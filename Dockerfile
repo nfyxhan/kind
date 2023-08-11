@@ -9,6 +9,8 @@ RUN curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0
 ENV CLUSTER_NAME=kind
 ENV KUBECONFIG=/var/run/host.config
 
+WORKDIR /home/workspace
+
 ADD hack .
 ADD config .
 
