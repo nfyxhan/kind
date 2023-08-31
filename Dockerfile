@@ -14,4 +14,4 @@ WORKDIR /home/workspace
 ADD hack hack
 ADD config config
 
-ENTRYPOINT ["dockerd", "--iptables=false"]
+ENTRYPOINT dockerd
