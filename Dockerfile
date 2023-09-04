@@ -9,7 +9,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   apk add curl bash
 
 # add kind
-RUN curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.20.0/kind-linux-amd64 && \
+RUN curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.19.0/kind-linux-amd64 && \
   chmod +x ./kind && \
   mv ./kind /usr/local/bin/kind
   
