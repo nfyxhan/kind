@@ -2,8 +2,16 @@
 DIR=$(cd "$(dirname "$0")";pwd)
 
 CONFIG_FILE=${DIR}/../config/config.yaml
-REGISTRY=registry.cn-hangzhou.aliyuncs.com/nfyxhan
-docker login $REGISTRY
+REGISTRY=registry.cn-hangzhou.aliyuncs.com
+
+haslogin=""
+if [[ -f "${HOME}/.docker/config.json" ]]; then
+    haslogin=$(cat ${HOME}/.docker/config.json | grep ${REGISTRY})
+fi
+if [[ "${haslogin}" == "" ]]; then
+    docker login ${REGISTRY}
+fi
+
 images=`cat ${CONFIG_FILE} | grep image | awk '{print $2}'`
 for i in $images ; do
    docker pull $i
