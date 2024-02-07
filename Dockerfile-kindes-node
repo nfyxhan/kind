@@ -1,0 +1,2 @@
+ARGS KINDEST_NODE_VERSION=latest
+From kindest/node:${KINDEST_NODE_VERSION}

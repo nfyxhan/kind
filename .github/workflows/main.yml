@@ -5,6 +5,7 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   REGISTRY: ${{ vars.REGISTRY }}
   FULL_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:v${{ github.sha }}
+  KINDEST_NODE_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}est-node:v${{ vars.KINDEST_NODE_VERSION }}
   CACHE_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:cache
   LATEST_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:latest
 
@@ -39,3 +40,16 @@ jobs:
         cache-to: type=registry,ref=${{ env.CACHE_IMAGE }},mode=max
       env: 
         FULL_IMAGE: ${{ env.FULL_IMAGE }}
+    - name: Build and push kindest node
+      id: docker_build_kindest_node
+      uses: docker/build-push-action@v4
+      with:
+        file: ./Dockerfile-kindst-node
+        context: .
+        push: true
+        build-args: |
+          KINDEST_NODE_VERSION=${{ vars.KINDEST_NODE_VERSION }}
+        tags: |
+          ${{ env.KINDEST_NODE_IMAGE }}
+      env:
+        KINDEST_NODE_VERSION: ${{ vars.KINDEST_NODE_VERSION }}

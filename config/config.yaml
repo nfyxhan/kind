@@ -8,4 +8,4 @@ networking:
   serviceSubnet: "10.96.0.0/12"
 nodes:
 - role: control-plane
-  image: registry.cn-hangzhou.aliyuncs.com/nfyxhan/kindest-node:v1.24.13
+  image: registry.cn-hangzhou.aliyuncs.com/nfyxhan/kindest-node:v1.26.4

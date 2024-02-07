@@ -1,6 +1,6 @@
 FROM docker:20.10.6-dind
 
-ENV KUBE_VERSION=v1.24.15
+ENV KUBE_VERSION=v1.26.11
 ENV CLUSTER_NAME=kind
 ENV KUBECONFIG=/var/run/host.config
 
