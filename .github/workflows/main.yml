@@ -38,9 +38,8 @@ jobs:
           ${{ env.LATEST_IMAGE }}
         cache-from: type=registry,ref=${{ env.CACHE_IMAGE }}
         cache-to: type=registry,ref=${{ env.CACHE_IMAGE }},mode=max
-      env: 
-        FULL_IMAGE: ${{ env.FULL_IMAGE }}
-        KINDEST_NODE_VERSION: ${{ vars.KINDEST_NODE_VERSION }}
+        build-args: |
+          KINDEST_NODE_VERSION=${{ vars.KINDEST_NODE_VERSION }}
     - name: Build and push kindest node
       id: docker_build_kindest_node
       uses: docker/build-push-action@v4
@@ -52,4 +51,3 @@ jobs:
           KINDEST_NODE_VERSION=${{ vars.KINDEST_NODE_VERSION }}
         tags: |
           ${{ env.KINDEST_NODE_IMAGE }}
-          
