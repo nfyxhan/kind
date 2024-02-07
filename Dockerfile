@@ -1,9 +1,9 @@
 FROM docker:20.10.6-dind
 
+ENV KINDEST_NODE_VERSION=${KINDEST_NODE_VERSION}
 ENV KUBE_VERSION=v1.26.11
 ENV CLUSTER_NAME=kind
 ENV KUBECONFIG=/var/run/host.config
-ENV KINDEST_NODE_VERSION=${KINDEST_NODE_VERSION}
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
   apk update && \
