@@ -44,7 +44,7 @@ jobs:
       id: docker_build_kindest_node
       uses: docker/build-push-action@v4
       with:
-        file: ./Dockerfile-kindst-node
+        file: ./Dockerfile-kindest-node
         context: .
         push: true
         build-args: |
