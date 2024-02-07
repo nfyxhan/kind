@@ -5,7 +5,7 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   REGISTRY: ${{ vars.REGISTRY }}
   FULL_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:v${{ github.sha }}
-  KINDEST_NODE_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}est-node:v${{ vars.KINDEST_NODE_VERSION }}
+  KINDEST_NODE_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}est-node:${{ vars.KINDEST_NODE_VERSION }}
   CACHE_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:cache
   LATEST_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:latest
 
