@@ -20,7 +20,7 @@ for i in $images ; do
 done
 
 HOST_IP=$API_SERVER_ADDRESS
-if [[[ "$HOST_IP" == "" ]] ; then
+if [[ "$HOST_IP" == "" ]] ; then
    HOST_IP=`ip addr|grep eth0 | grep inet | awk '{print $2}'|awk -F '/' '{print $1}'`
 fi
 
