@@ -19,7 +19,10 @@ for i in $images ; do
    docker pull $i
 done
 
-HOST_IP=`ip addr|grep eth0 | grep inet | awk '{print $2}'|awk -F '/' '{print $1}'`
+HOST_IP=$API_SERVER_ADDRESS
+if [[[ "$HOST_IP" == "" ]] ; then
+   HOST_IP=`ip addr|grep eth0 | grep inet | awk '{print $2}'|awk -F '/' '{print $1}'`
+fi
 
 sed -i s'#apiServerAddress.*#apiServerAddress: '${HOST_IP}'#'g ${CONFIG_FILE} 
 
