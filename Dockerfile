@@ -11,13 +11,17 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   apk update && \
   apk add curl bash
 
+ADD ./hack/env.sh ./env.sh
+
 # add kind
-RUN curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.19.0/kind-linux-amd64 && \
+RUN . ./env.sh && \
+  curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.19.0/kind-linux-${RUN_PLATFORM} && \
   chmod +x ./kind && \
   mv ./kind /usr/local/bin/kind
   
 # add kubectl
-RUN curl -Lo ./kubectl https://dl.k8s.io/release/${KUBE_VERSION}/bin/linux/amd64/kubectl && \
+RUN . ./env.sh && \
+  curl -Lo ./kubectl https://dl.k8s.io/release/${KUBE_VERSION}/bin/linux/${RUN_PLATFORM}/kubectl && \
   chmod +x kubectl && \
   mv ./kubectl /usr/local/bin/ && \
   echo 'source <(kubectl completion bash)' >>  ~/.bashrc
