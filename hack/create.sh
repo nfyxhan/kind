@@ -1,7 +1,10 @@
 #!/bin/sh
 DIR=$(cd "$(dirname "$0")";pwd)
 
-CONFIG_FILE=${DIR}/../config/config.yaml
+CLUSTER_NAME=${CLUSTER_NAME:-kind}
+CONFIG_TEMPLATE=${DIR}/../config/config.yaml
+CONFIG_FILE=${DIR}/../config/${CLUSTER_NAME}.yaml
+cp -f ${CONFIG_TEMPLATE} ${CONFIG_FILE}
 REGISTRY=registry.cn-hangzhou.aliyuncs.com
 
 haslogin=""
@@ -25,6 +28,14 @@ if [[ "$HOST_IP" == "" ]] ; then
 fi
 
 sed -i s'#apiServerAddress.*#apiServerAddress: '${HOST_IP}'#'g ${CONFIG_FILE} 
+
+if [[ "$CLUSTER_NAME" != "" ]] ; then
+    sed -i s'#name: .*#name: '${CLUSTER_NAME}'#'g ${CONFIG_FILE}
+fi
+
+if [[ "$APISERVER_PORT" != "" ]] ; then
+    sed -i s'#apiServerPort.*#apiServerPort: '${APISERVER_PORT}'#'g ${CONFIG_FILE}
+fi
 
 kind create cluster --config ${CONFIG_FILE} \
    --kubeconfig="${KUBECONFIG}" $@
