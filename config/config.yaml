@@ -15,3 +15,6 @@ kubeadmConfigPatches:
     apiServer:
        certificate:
          duration: 876000h
+    controllerManager:
+       extraArgs:
+         cluster-signing-duration: 876000h
