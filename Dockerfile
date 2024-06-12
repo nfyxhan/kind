@@ -15,7 +15,7 @@ ADD ./hack/env.sh ./env.sh
 
 # add kind
 RUN . ./env.sh && \
-  curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.19.0/kind-linux-${RUN_PLATFORM} && \
+  curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.17.0/kind-linux-${RUN_PLATFORM} && \
   chmod +x ./kind && \
   mv ./kind /usr/local/bin/kind
   
