@@ -8,7 +8,7 @@ networking:
   serviceSubnet: "10.96.0.0/12"
 nodes:
 - role: control-plane
-  image: registry.cn-hangzhou.aliyuncs.com/nfyxhan/kindest-node:v1.19.16
+  image: registry.cn-hangzhou.aliyuncs.com/nfyxhan/kindest-node:v1.28.10
 kubeadmConfigPatches:
   - |
     kind: ClusterConfiguration
